@@ -1,0 +1,24 @@
+{% extends 'news/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} {% blocktrans %}Foydalanuvchi ma'lumotlarini o'zgartirish{% endblocktrans %} {% endblock title %}
+{% block content %}
+    <h1>{% blocktrans %}Foydalanuvchi ma'lumotlarini o'zgartirish{% endblocktrans %}</h1>
+    <p>{% blocktrans %}Siz o'zingiz haqingizdagi ma'lumotlarni quyidagi forma orqali o'zgartiri
+        shiziz mumkin:{% endblocktrans %} </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ user_form | crispy }} <br>
+                    {{ profile_form | crispy }} <br>
+                    <button class="btn btn-success" type="submit">
+                        {% blocktrans %}O'zgarishlarni saqlash{% endblocktrans %}
+                    </button>
+                </form> <br>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
